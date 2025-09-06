@@ -120,7 +120,8 @@
 
 @media screen and (max-width: 480px) {
   .hero-img {
-    max-width: 95%;
+    max-width: 50% 7%;
+   
   }
 
   .hero h1 {
@@ -129,6 +130,7 @@
 
   .hero p {
     font-size: 0.9rem;
+    margin-left: 10px;
   }
 }
 

@@ -163,7 +163,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
       path: '/entertainment',
       links: [
         { name: 'Music Player', path: '/music' },
-        { name: 'AI Assistant', path: '/ai' },
+        { name: 'AI Assistant',   path: '/aiassistant' },
           { name: 'Video Player', path: '/video' },
         { name: 'Games', path: '/games' },
           { name: 'Podcast', path: '/podcast' },
