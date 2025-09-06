@@ -5,8 +5,10 @@ function Entertainment({ darkMode }) {
   const features = [
     {
       name: 'Music Player',
+      
       desc: 'Listen to your favorite tracks anytime, with playlists and controls.',
       img: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80',
+       path: '/musicplayer'
     },
     {
       name: 'AI Assistant',

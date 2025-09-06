@@ -15,7 +15,7 @@ function Feature({ darkMode }) {
         { 
           name: 'AI Assistant', 
           img: 'https://i.ibb.co/tM8z29qh/ai.jpg',
-          path: '/ai'
+          path: '/aiassistant'
         },
         { 
           name: 'Video Player', 

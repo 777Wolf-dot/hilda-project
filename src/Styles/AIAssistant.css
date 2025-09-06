@@ -1,0 +1,233 @@
+/* General Styles */
+.ai-assistant {
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: Arial, sans-serif;
+}
+
+/* Light Mode (Default) */
+.ai-assistant.light {
+  background-color: #f0f0f0;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+/* Dark Mode */
+.ai-assistant.dark {
+  background-color: #121212;
+  color: #e0e0e0;
+  border: 1px solid #333;
+}
+
+/* Header & Controls */
+.assistant-title {
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin: 10px 0;
+  padding: 10px;
+  border-bottom: 2px solid #ddd;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.assistant-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  border-bottom: 1px solid #ccc;
+  transition: border-color 0.3s ease;
+}
+
+/* Light Mode Header */
+.ai-assistant.light .assistant-title {
+  color: #333;
+  border-bottom-color: #ddd;
+}
+
+.ai-assistant.light .assistant-header {
+  background-color: #fff;
+  border-bottom-color: #ddd;
+}
+
+/* Dark Mode Header */
+.ai-assistant.dark .assistant-title {
+  color: #0f0;
+  border-bottom-color: #222;
+}
+
+.ai-assistant.dark .assistant-header {
+  background-color: #1a1a1a;
+  border-bottom-color: #222;
+}
+
+.assistant-header select,
+.assistant-header button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Light Mode Controls */
+.ai-assistant.light .assistant-header select,
+.ai-assistant.light .assistant-header button {
+  background-color: #ddd;
+  color: #333;
+}
+
+.ai-assistant.light .assistant-header button:hover {
+  background-color: #ccc;
+}
+
+/* Dark Mode Controls (Black & Green Theme) */
+.ai-assistant.dark .assistant-header select,
+.ai-assistant.dark .assistant-header button {
+  background-color: #222;
+  color: #0f0;
+}
+
+.ai-assistant.dark .assistant-header button:hover {
+  background-color: #333;
+}
+
+/* Chat Box */
+.chat-box {
+  flex-grow: 1;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.msg {
+  max-width: 80%;
+  padding: 10px 15px;
+  border-radius: 18px;
+  word-wrap: break-word;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.msg.user {
+  align-self: flex-end;
+  background-color: #2e8b57;
+  color: #fff;
+  border-bottom-right-radius: 5px;
+}
+
+.msg.ai {
+  align-self: flex-start;
+  background-color: #c8e6c9;
+  color: #333;
+  border-bottom-left-radius: 5px;
+}
+
+/* Dark Mode Messages */
+.ai-assistant.dark .msg.ai {
+  background-color: #333;
+  color: #e0e0e0;
+}
+
+.typing {
+  align-self: flex-start;
+  padding: 10px 15px;
+  color: #888;
+  font-style: italic;
+}
+
+/* Input & Quick Actions */
+.input-box {
+  display: flex;
+  padding: 10px 15px;
+  border-top: 1px solid #ccc;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.input-box input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1em;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark Mode Input Box */
+.ai-assistant.dark .input-box {
+  background-color: #1a1a1a;
+  border-top-color: #222;
+}
+
+.ai-assistant.dark .input-box input {
+  background-color: #222;
+  border-color: #444;
+  color: #e0e0e0;
+}
+
+.input-box button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.input-box button:last-child {
+  background-color: #2e8b57;
+  color: #fff;
+}
+
+.input-box button:last-child:hover {
+  background-color: #257a4a;
+}
+
+.quick-actions {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 15px;
+  border-top: 1px solid #ccc;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.quick-actions button {
+  background-color: #ddd;
+  color: #333;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.quick-actions button:hover {
+  background-color: #ccc;
+}
+
+/* Dark Mode Quick Actions */
+.ai-assistant.dark .quick-actions {
+  background-color: #1a1a1a;
+  border-top-color: #222;
+}
+
+.ai-assistant.dark .quick-actions button {
+  background-color: #222;
+  color: #0f0;
+}
+
+.ai-assistant.dark .quick-actions button:hover {
+  background-color: #333;
+}

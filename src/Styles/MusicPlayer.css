@@ -1,0 +1,126 @@
+:root {
+  --green: #00ff00;
+  --dark-bg: #000;
+  --dark-text: #eaeaea;
+  --light-bg: #fff;
+  --light-text: #111;
+}
+
+.assistant-container {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 20px;
+  border-radius: 16px;
+  font-family: "Share Tech Mono", monospace;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+}
+
+/* Theme modes */
+.assistant-container.light {
+  background: var(--light-bg);
+  color: var(--light-text);
+}
+
+.assistant-container.dark {
+  background: var(--dark-bg);
+  color: var(--dark-text);
+}
+
+/* Header */
+.assistant-container h2 {
+  text-align: center;
+  margin-bottom: 15px;
+  color: var(--green);
+  font-size: 1.6rem;
+  text-shadow: 0 0 12px rgba(0, 255, 0, 0.8);
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.controls label {
+  font-size: 0.9rem;
+  color: var(--green);
+}
+
+.controls select,
+.controls input[type="checkbox"] {
+  margin-left: 6px;
+  padding: 5px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--green);
+  background: transparent;
+  color: inherit;
+}
+
+/* Chat Box */
+.chat-box {
+  background: rgba(0, 255, 0, 0.05);
+  border-radius: 12px;
+  padding: 15px;
+  height: 400px;
+  overflow-y: auto;
+  margin-bottom: 15px;
+  box-shadow: inset 0 0 12px rgba(0, 255, 0, 0.2);
+}
+
+/* Messages */
+.user-msg {
+  text-align: right;
+  margin: 8px 0;
+  padding: 10px;
+  border-radius: 8px;
+  background: rgba(0, 255, 0, 0.15);
+  color: var(--green);
+}
+
+.ai-msg {
+  text-align: left;
+  margin: 8px 0;
+  padding: 10px;
+  border-radius: 8px;
+  background: rgba(0, 255, 0, 0.08);
+  color: var(--green);
+}
+
+/* Input */
+.input-row {
+  display: flex;
+  gap: 10px;
+}
+
+.input-row input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--green);
+  background: transparent;
+  color: inherit;
+  font-size: 1rem;
+}
+
+.input-row input:focus {
+  outline: none;
+  box-shadow: 0 0 12px rgba(0, 255, 0, 0.5);
+}
+
+.input-row button {
+  background: var(--green);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 18px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #000;
+  transition: 0.3s;
+}
+
+.input-row button:hover {
+  background: #00e600;
+}

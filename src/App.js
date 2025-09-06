@@ -10,6 +10,10 @@ import Profile from './Pages/Profile';
 import Admin from './Pages/Admin';
 import Register from './Pages/Register';
 import Features from './Pages/Features';
+import MusicPlayer from './Pages/MusicPlayer';
+import AIAssistant from './Pages/AIAssistant';
+
+
 function App() {
   const [darkMode, setDarkMode] = useState(true);
 
@@ -28,6 +32,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register darkMode={darkMode} />} />
          <Route path="/features" element={<Features darkMode={darkMode} />} />
+         <Route path="/musicplayer" element={<MusicPlayer darkMode={darkMode} />} />
+         <Route path="/aiassistant" element={<AIAssistant darkMode={darkMode} />} />
       </Routes>
     </div>
   );
