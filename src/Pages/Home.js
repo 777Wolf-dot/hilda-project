@@ -15,7 +15,7 @@ const Home = ({ darkMode, user }) => {
           />
           <h1>Welcome to Hilda</h1>
           <p>Explore AI, Entertainment, Productivity, and Smart Features</p>
-          <Link to="/features" className="hero-btn1">Get Started</Link>
+          <Link to="/register" className="hero-btn1">Get Started</Link>
           <Link to="/features" className="hero-btn1">Explore</Link>
         </div>
       </section>
