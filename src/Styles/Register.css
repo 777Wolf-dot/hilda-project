@@ -1,0 +1,120 @@
+/* Base Variables for Light and Dark mode */
+.register-container.light {
+  --bg-color: #fff;
+  --text-color: #000;
+  --accent-color: #00FF00; /* green accent */
+  --hover-color: #39FF14;
+}
+
+.register-container.dark {
+  --bg-color: #000;
+  --text-color: #00FF00; /* bright green text */
+  --accent-color: #00FF00;
+  --hover-color: #39FF14;
+}
+
+/* Container */
+.register-container {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  padding: 20px;
+}
+
+/* Card */
+.register-card {
+  background-color: var(--bg-color);
+  border: 2px solid var(--accent-color);
+  border-radius: 15px;
+  padding: 40px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+  text-align: center;
+  transition: box-shadow 0.3s ease;
+}
+
+.register-card:hover {
+  box-shadow: 0 0 25px rgba(0, 255, 0, 0.35);
+}
+
+.register-card h2 {
+  margin-bottom: 20px;
+}
+
+/* Form */
+.register-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.register-card input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--accent-color);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-size: 1rem;
+  transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.register-card input:focus {
+  outline: none;
+  border-color: var(--hover-color);
+}
+
+/* Button */
+.register-btn {
+  padding: 12px;
+  border-radius: 8px;
+  background-color: var(--accent-color);
+  color: #000;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.register-btn:hover {
+  transform: translateY(-2px);
+  background-color: var(--hover-color);
+}
+
+/* Error message */
+.error {
+  color: red;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+/* Link */
+.register-card a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.register-card a:hover {
+  color: var(--hover-color);
+}
+
+/* Responsive */
+@media screen and (max-width: 500px) {
+  .register-card {
+    padding: 30px 20px;
+  }
+
+  .register-card input {
+    font-size: 0.9rem;
+  }
+
+  .register-btn {
+    font-size: 0.95rem;
+  }
+}
