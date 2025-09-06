@@ -1,19 +1,8 @@
 import React from 'react';
 import '../Styles/Home.css';
-import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 const Home = ({ darkMode, user }) => {
-  const navigate = useNavigate();
-
-  const handleGetStarted = () => {
-    if (user) {
-      navigate("/features"); // returning user
-    } else {
-      navigate("/register"); // first-time visitor
-    }
-  };
-
   return (
     <div className={`home-container ${darkMode ? 'dark' : 'light'}`}>
       {/* Hero Section */}
@@ -28,7 +17,6 @@ const Home = ({ darkMode, user }) => {
           <p>Explore AI, Entertainment, Productivity, and Smart Features</p>
           <Link to="/features" className="hero-btn1">Get Started</Link>
           <Link to="/features" className="hero-btn1">Explore</Link>
-
         </div>
       </section>
 
@@ -39,28 +27,28 @@ const Home = ({ darkMode, user }) => {
 
           {/* Entertainment */}
           <div className="card">
-            <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80" alt="Entertainment"/>
+            <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80" alt="Entertainment" />
             <h3>Entertainment</h3>
             <p>Music Player & AI Assistant (Chat + Voice)</p>
           </div>
 
           {/* Productivity */}
           <div className="card">
-            <img src="https://i.ibb.co/BHkW3Gpm/product.jpg" alt="Productivity"/>
+            <img src="https://i.ibb.co/BHkW3Gpm/product.jpg" alt="Productivity" />
             <h3>Productivity</h3>
             <p>Notes, To-Do, and Task Management</p>
           </div>
 
           {/* Smart Features */}
           <div className="card">
-            <img src="https://i.ibb.co/N6Rf411y/smart.jpg" alt="Smart Features"/>
+            <img src="https://i.ibb.co/N6Rf411y/smart.jpg" alt="Smart Features" />
             <h3>Smart Features</h3>
             <p>Weather, News, and Daily Quotes</p>
           </div>
 
           {/* Admin */}
           <div className="card">
-            <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=800&q=80" alt="Admin"/>
+            <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=800&q=80" alt="Admin" />
             <h3>Admin</h3>
             <p>Admin Dashboard and Management Tools</p>
           </div>
@@ -72,6 +60,7 @@ const Home = ({ darkMode, user }) => {
       <section className="cta">
         <h2>Sign In to Access All Features</h2>
         <p>Log in to explore the full Hilda experience.</p>
+        <Link to="/login" className="cta-btn">Sign In</Link>
       </section>
     </div>
   );
