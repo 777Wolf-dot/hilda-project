@@ -12,6 +12,7 @@ import Register from './Pages/Register';
 import Features from './Pages/Features';
 import MusicPlayer from './Pages/MusicPlayer';
 import AIAssistant from './Pages/AIAssistant';
+import VideoPlayer from './Pages/VideoPlayer'
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
          <Route path="/features" element={<Features darkMode={darkMode} />} />
          <Route path="/musicplayer" element={<MusicPlayer darkMode={darkMode} />} />
          <Route path="/aiassistant" element={<AIAssistant darkMode={darkMode} />} />
+         <Route path="/videoplayer" element={<VideoPlayer darkMode={darkMode} />} />
       </Routes>
     </div>
   );
