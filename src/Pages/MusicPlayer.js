@@ -7,6 +7,7 @@ function MusicPlayer({ darkMode }) {
   const [playlist, setPlaylist] = useState([]);
   const [likedTracks, setLikedTracks] = useState([]);
   const [currentTrackIndex, setCurrentTrackIndex] = useState(null);
+  const [currentTrack, setCurrentTrack] = useState(null); // New state to hold the current track object
   const [isPlaying, setIsPlaying] = useState(false);
 
   const clientId = "9919c386"; // Your Jamendo Client ID
@@ -27,6 +28,30 @@ function MusicPlayer({ darkMode }) {
   useEffect(() => {
     fetchTracks();
   }, []);
+
+  // Handle audio player events (e.g., when a song finishes)
+  useEffect(() => {
+    const audio = document.getElementById("audio-player");
+    const handleEnded = () => {
+      if (currentTrackIndex !== null && currentTrackIndex < playlist.length - 1) {
+        nextTrack();
+      } else {
+        setIsPlaying(false);
+        setCurrentTrackIndex(null);
+        setCurrentTrack(null);
+      }
+    };
+
+    if (audio) {
+      audio.addEventListener('ended', handleEnded);
+    }
+
+    return () => {
+      if (audio) {
+        audio.removeEventListener('ended', handleEnded);
+      }
+    };
+  }, [currentTrackIndex, playlist]); // Dependencies: currentTrackIndex and playlist
 
   // Search songs
   const handleSearch = () => {
@@ -51,6 +76,7 @@ function MusicPlayer({ darkMode }) {
 
   // Play track
   const playTrack = (track, index, inPlaylist = false) => {
+    setCurrentTrack(track); // Set the current track object
     setCurrentTrackIndex(inPlaylist ? index : null);
     setIsPlaying(true);
 
@@ -71,6 +97,8 @@ function MusicPlayer({ darkMode }) {
   // Stop track
   const stopTrack = () => {
     setIsPlaying(false);
+    setCurrentTrack(null);
+    setCurrentTrackIndex(null);
     const audio = document.getElementById("audio-player");
     if (audio) {
       audio.pause();
@@ -82,8 +110,14 @@ function MusicPlayer({ darkMode }) {
   const nextTrack = () => {
     if (currentTrackIndex !== null && currentTrackIndex < playlist.length - 1) {
       const newIndex = currentTrackIndex + 1;
+      const nextSong = playlist[newIndex];
       setCurrentTrackIndex(newIndex);
-      playTrack(playlist[newIndex], newIndex, true);
+      setCurrentTrack(nextSong);
+      const audio = document.getElementById("audio-player");
+      if (audio) {
+        audio.src = nextSong.audio;
+        audio.play();
+      }
     }
   };
 
@@ -91,14 +125,41 @@ function MusicPlayer({ darkMode }) {
   const prevTrack = () => {
     if (currentTrackIndex !== null && currentTrackIndex > 0) {
       const newIndex = currentTrackIndex - 1;
+      const prevSong = playlist[newIndex];
       setCurrentTrackIndex(newIndex);
-      playTrack(playlist[newIndex], newIndex, true);
+      setCurrentTrack(prevSong);
+      const audio = document.getElementById("audio-player");
+      if (audio) {
+        audio.src = prevSong.audio;
+        audio.play();
+      }
     }
   };
 
   return (
     <div className={`music-player-container ${darkMode ? "dark" : "light"}`}>
       <h1>🎵 Hilda Music Player</h1>
+
+      {/* Currently Playing Display */}
+      {currentTrack && (
+        <div className="currently-playing">
+          <img src={currentTrack.album_image} alt={currentTrack.name} className="current-album-art" />
+          <div className="current-track-info">
+            <h3>{currentTrack.name}</h3>
+            <p>{currentTrack.artist_name}</p>
+          </div>
+          <div className="current-controls">
+            <button onClick={prevTrack}>⏮ </button>
+            {isPlaying ? (
+              <button onClick={pauseTrack}>⏸ </button>
+            ) : (
+              <button onClick={() => playTrack(currentTrack, currentTrackIndex, true)}>▶ </button>
+            )}
+            <button onClick={stopTrack}>⏹ </button>
+            <button onClick={nextTrack}>⏭</button>
+          </div>
+        </div>
+      )}
 
       {/* Search bar */}
       <div className="search-bar">
@@ -115,7 +176,7 @@ function MusicPlayer({ darkMode }) {
       <div className="recommended">
         <h2>🔥 Recommended Songs</h2>
         <div className="songs-grid">
-          {tracks.map((track, index) => (
+          {tracks.map((track) => (
             <div key={track.id} className="song-card">
               <img
                 src={track.album_image || "https://via.placeholder.com/150"}
@@ -124,7 +185,7 @@ function MusicPlayer({ darkMode }) {
               <h4>{track.name}</h4>
               <p>{track.artist_name}</p>
               <div className="card-actions">
-                <button onClick={() => playTrack(track, index)}>▶ Play</button>
+                <button onClick={() => playTrack(track, null)}>▶ Play</button>
                 <button onClick={pauseTrack}>⏸ Pause</button>
                 <button onClick={stopTrack}>⏹ Stop</button>
                 <button onClick={() => toggleLike(track)}>
@@ -144,7 +205,7 @@ function MusicPlayer({ darkMode }) {
         <h2>🎶 My Playlist</h2>
         <div className="songs-grid">
           {playlist.map((track, index) => (
-            <div key={track.id + "-pl"} className="song-card">
+            <div key={track.id + "-pl"} className={`song-card ${currentTrack && currentTrack.id === track.id ? 'active' : ''}`}>
               <img
                 src={track.album_image || "https://via.placeholder.com/150"}
                 alt={track.name}
@@ -153,7 +214,7 @@ function MusicPlayer({ darkMode }) {
               <p>{track.artist_name}</p>
               <div className="card-actions">
                 <button onClick={() => playTrack(track, index, true)}>
-                  ▶ 
+                  ▶
                 </button>
                 <button onClick={pauseTrack}>⏸ </button>
                 <button onClick={stopTrack}>⏹ </button>
@@ -161,26 +222,6 @@ function MusicPlayer({ darkMode }) {
             </div>
           ))}
         </div>
-
-        {/* Playlist Controls */}
-        {playlist.length > 0 && currentTrackIndex !== null && (
-          <div className="playlist-controls">
-            <button onClick={prevTrack}>⏮ </button>
-            {isPlaying ? (
-              <button onClick={pauseTrack}>⏸ </button>
-            ) : (
-              <button
-                onClick={() =>
-                  playTrack(playlist[currentTrackIndex], currentTrackIndex, true)
-                }
-              >
-                ▶ 
-              </button>
-            )}
-            <button onClick={stopTrack}>⏹ </button>
-            <button onClick={nextTrack}>⏭</button>
-          </div>
-        )}
       </div>
 
       {/* Hidden Audio Player */}
